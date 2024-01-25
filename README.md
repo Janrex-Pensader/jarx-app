@@ -1,1 +1,0 @@
-## SugarTech CRUD using Laravel
