@@ -13,4 +13,13 @@ class UserModel extends Authenticatable
     protected $table = 'user_tbl';
     protected $primaryKey = 'user_ID';
     protected $fillable = ['first_name', 'last_name', 'gender', 'birthday', 'monthly_salary', 'email', 'password'];
+
+    // protected $casts = [
+    //     'birthday' => 'date',
+    // ];
+
+    // public function getAgeAttribute()
+    // {
+    //      return $this->birthday->age;
+    // }
 }

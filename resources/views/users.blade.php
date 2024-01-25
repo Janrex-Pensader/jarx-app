@@ -55,7 +55,7 @@
                         Average Age of all<br>employees
                     </div>
                     <div class="card-body">
-                        
+                        <h2><?= $avg_age; ?></h2>
                     </div>
                 </div>
                 <div class="card p-0 col-2 mx-auto">

@@ -10,6 +10,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Collection;
+use App\Http\Controllers\DateTime;
 use Carbon\Carbon;
 
 class UserController extends Controller {
@@ -58,7 +60,8 @@ class UserController extends Controller {
                 'genders' => $genders,
                 'male' => $male,
                 'female' => $female,
-                'salary' => $salary
+                'salary' => $salary,
+                'avg_age'=> $this->avgMembers($users)
             ]);
         } else {
             return redirect('/login');
@@ -125,5 +128,17 @@ class UserController extends Controller {
 
         return redirect('/users');
         
+    }
+
+    public function avgMembers(Collection $members)
+    {
+        return $members->average(function ($member) {
+            $dob = date("Y-m-d",strtotime($member->birthday));
+            $dobObject = new \DateTime($dob);
+            $nowObject = new \DateTime();
+            $diff = $dobObject->diff($nowObject);
+
+            return $diff->y;
+        });
     }
 }
